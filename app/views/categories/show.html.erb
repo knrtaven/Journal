@@ -1,0 +1,42 @@
+<div>
+
+
+  <table>
+    <thead>
+      <tr>
+        <td><%= @category.name %></td>
+      </tr>
+    </thead>
+
+    <% if @category.tasks.present? %>
+
+      <tbody>
+        <% @category.tasks.each do |task| %>
+
+          <tr>
+            <td><%= task.name %></td>
+            <td><%= task.due.strftime("%b %d, %T%p") %></td>
+            <td><%= link_to 'See More', category_task_path(@category, task)%></td>
+            <td><%= link_to 'Edit', edit_category_task_path(@category, task) %></td>
+            <td><%= button_to 'Delete', category_task_path(@category, task), method: :delete %></td>
+          </tr>
+
+        <% end %>
+      </tbody>
+  </table>
+
+    <% else %>
+
+      <div> No task yet. </div>
+
+    <% end %>
+
+    <div>
+        <%= link_to 'Add task', new_category_task_path(@category) %>
+        <%= link_to "Edit", edit_category_path(@category) %> <br>
+        <%= link_to 'Back', categories_path %> <br>
+        <%# <%= link_to 'see tasks', category_tasks_path(@category) %> <br> 
+        <%= button_to "Delete Category",category_path(@category), method: :delete %>
+    </div>
+
+</div>

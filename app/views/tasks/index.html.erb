@@ -1,0 +1,26 @@
+<table>
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Description</th>
+        </tr>
+    </thead>
+
+
+    <tbody>
+      <% @category.tasks.each do |task| %>
+        <tr>
+          <td><%= task.id %></td>
+          <td><%= task.name %></td>
+          <td><%= task.description %></td>
+          <td><%= link_to 'See More', category_task_path(@category, task)%>
+          <td><%= link_to 'Edit', edit_category_task_path(@category, task) %></td>
+          <td><%= button_to 'Delete', category_task_path(@category, task), method: :delete %></td>
+        </tr>
+      <% end %>
+    </tbody>
+</table>
+
+<%= link_to 'Add task', new_category_task_path(@category) %>
+<%= link_to 'Return to Category', category_path(@category) %>

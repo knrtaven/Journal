@@ -1,0 +1,46 @@
+<%= button_to "logout", destroy_user_session_path, method: :delete  %><br>
+
+<div>
+
+    <div>
+        <h2>Current Tasks</h2>
+    </div>
+
+
+    <div>
+        <% if @task_today.present? %>
+            <% @task_today.each do |task| %>
+                <h2><%= task.name %></h2>
+                <p><%= task.description %></p>
+                <p><%= task.due.strftime("%b %d, %r") %></p>
+                _____________________________________________
+            <% end %>
+        <%else%>
+            no urgent tasks
+        <% end %>
+
+    </div>
+
+</div>
+
+
+<table>
+    <thead>
+        <tr>
+            <th>Categories</th>
+        </tr>
+    </thead>
+    
+    <tbody>
+        <% @categories.each do |category|%>
+            <tr>
+                <td><%= category.name %></td>
+                <td><%= link_to 'Show', category_path(category) %></td>
+                <td><%= link_to 'Edit', edit_category_path(category) %></td>
+                <td><%= button_to 'Delete', category_path(category), method: :delete %></td>
+            </tr>
+        <% end %>
+    </tbody>
+</table>
+
+<%= link_to 'New Category', new_category_path %>

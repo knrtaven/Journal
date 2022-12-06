@@ -1,0 +1,21 @@
+<div>
+    <div>
+        <%= @task.name%>
+    </div><br>
+
+    <div>
+        <%= @task.description%>
+    </div>
+
+
+    <div>
+        <p>Due on</p>
+
+        <td><%= @task.due.strftime "%b %d, %T%p" %></td>
+    </div> <br>
+
+     
+    <%= link_to 'Edit task', edit_category_task_path(@category, @task) %> |
+    <%= link_to 'Return', category_path(@category) %>
+    <%= button_to 'Delete', category_task_path(@category, @task), method: :delete %>
+</div>

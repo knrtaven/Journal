@@ -1,0 +1,30 @@
+<%= form_with model: [@category, @task], local: true do |f| %>
+<div>
+  <% if @task.errors.any? %>
+    <ul>
+        <%@task.errors.full_messages.each do | message |%>
+            <li><%= message %></li>
+        <% end %>
+    </ul>
+  <% end %>
+</div>
+
+<div>
+    <%= f.label :name %><br/>
+    <%= f.text_field :name %><br/>
+</div>
+
+<div>
+    <%= f.label :description %><br/>
+    <%= f.text_field :description %><br/>
+</div>
+
+<div>
+<%= f.submit%>
+</div>
+
+<div>
+<%= link_to 'Cancel', category_tasks_path %><br/>
+</div>
+
+<% end %>
